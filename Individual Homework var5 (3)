@@ -1,0 +1,98 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool IsDataValid(double a, double b, double h, double eps);
+
+double Ln(double a, double eps, int &n);
+
+void DisplayTable(double a, double b, double h, double eps);
+
+int main()
+{
+	while (true)
+	{
+		double a, b, h, eps;
+		int n = 0;
+
+		while (true)
+		{
+
+			cout << "Enter the numbers: " << endl;
+			cout << "a: ";
+			cin >> a;
+			cout << "b: ";
+			cin >> b;
+			system("cls");
+			cout << "Enter the epsilon: " << endl;
+			cin >> eps;
+			system("cls");
+			cout << "Enter the step: " << endl;
+			cin >> h;
+			system("cls");
+
+			if (IsDataValid(a, b, h, eps)) break;
+			cout << "It is invalid data. Enter the other value" << endl;
+		}
+		cout << "Result" << endl;
+		DisplayTable(a, b, h, eps);
+		system("pause");
+
+		char yes;
+		cout << "Would you like to countinie? Press y: " << endl;
+		cin >> yes;
+		if (yes == 'y' || yes == 'Y')
+			continue;
+		break;
+	}
+	return 0;
+}
+
+bool IsDataValid(double a, double b, double h, double eps)
+{
+	if (a < -1 && b > 1) return false;
+	if (eps < 0 || eps >= 1) return false;
+	if (a > b) return false;
+	if (h < 0) return false;
+	return true;
+}
+
+double Ln(double a, double eps, int &n)
+{
+	int i = 1;
+	double sum = 0, p = a, q = a;
+	while (fabs(q) >= eps)
+	{
+		sum += q;
+		p *= -a;
+		q = p / i;
+		i++;
+	}
+	n = i;
+	return sum;
+}
+
+void DisplayTable(double a, double b, double h, double eps)
+{
+	cout.width(10);
+	cout << "x";
+	cout.width(18);
+	cout << "Ln";
+	cout.width(20);
+	cout << "Exact value";
+	
+
+
+
+	for (double x = a; x <= b; x += h)
+	{
+		cout.width(10);
+		cout << x;
+		cout.width(18);
+		int n = 0;
+		cout << Ln(x, eps, n);
+		cout.width(20);
+		cout << log(1 + x) << endl;
+		
+	}
+}
