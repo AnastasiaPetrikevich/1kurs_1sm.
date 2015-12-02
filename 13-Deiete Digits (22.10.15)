@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	long long n;
+	cout << "Enter your number:" << endl;
+	cin >> n;
+	int d;
+	cout << "Enter the digit to be delete" << endl;
+	cin >> d;
+	long long a = 0, t = n;
+	while (t)
+	{
+		int b = t % 10;
+		if (b != d)
+			a = a * 10 + b;
+		t = t / 10;
+	}
+	t = a;
+	a = 0;
+	while (t)
+	{
+		int b = t % 10;
+		a = a * 10 + b;
+		t = t/ 10;
+	}
+	cout <<"Result:"<< a << endl;
+	system("pause");
+	return 0;
+}
