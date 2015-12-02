@@ -1,0 +1,66 @@
+#include <iostream>;
+using namespace std;
+int main()
+{
+	cout << "Calculator" << endl;
+	while (true)
+	{
+		char operation;
+		cout << "Choose the operation" << endl;
+		cout << "If you want addition press + " << endl;
+		cout << "If you want difference press - " << endl;
+		cout << "If you want multiplication press * " << endl;
+		cout << "If you want division press / or : " << endl;
+		cin >> operation;
+
+		system("cls");
+		double a, b;
+		cout << "Enter a coefficients" << endl;
+		cout << "a: " << endl;
+		cin >> a;
+		cout << "b: " << endl;
+		cin >> b;
+		system("cls");
+		int n;
+		switch (operation)
+		{
+		case '+':
+		{
+			n = a + b;
+			break;
+		}
+
+		case '-':
+		{
+			n = a - b;
+			break;
+		}
+
+		case '*':
+		{
+			n = a*b;
+			break;
+		}
+
+		case ':':
+		case '/':
+
+		{
+			while (true)
+			{
+				if (b != 0) break;
+				cout << "Error! No real roots" << endl;
+				cout << "Enter other b: ";
+				cin >> b;
+			}
+
+			n = a / b;
+		}
+
+
+		}
+		cout << a << operation << b << "=" << n << endl;
+		system("pause");		
+	}
+	return 0;
+}
